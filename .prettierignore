@@ -1,0 +1,13 @@
+node_modules/*
+src/polyfills.ts
+dist/*
+reports/*
+docs/*
+.eslintrc.js
+test
+src/**/*.spec.*
+src/**/*.test.*
+.angular
+coverage
+cypress
+*.md

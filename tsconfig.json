@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2022" /* Especifica la versión de ECMAScript que se debe utilizar en la compilación */,
+    "module": "commonjs" /* Especifica el sistema de módulos que se debe utilizar en la compilación */,
+    "strict": true /* Habilita todas las opciones de comprobación estricta de TypeScript */,
+    "esModuleInterop": true /* Habilita la interoperabilidad entre espacios de nombres de módulos y módulos CommonJS */,
+    "sourceMap": true /* Genera archivos de mapa de origen para el depurador */,
+    "outDir": "./dist" /* Especifica la carpeta de salida para los archivos JavaScript compilados */,
+    "rootDir": "./src" /* Especifica la carpeta de entrada para los archivos TypeScript */,
+    "declaration": true /* Genera archivos de definición de tipos (.d.ts) para los archivos TypeScript */,
+    "declarationDir": "./dist/" /* Especifica la carpeta de salida para los archivos de definición de tipos */
+  },
+  "include": [
+    "./src/**/*" /* Especifica la ubicación de los archivos TypeScript que se deben incluir en la compilación */
+  ],
+  "exclude": [
+    "node_modules" /* Especifica la ubicación de los archivos que se deben excluir de la compilación */,
+    "src/core/classes/extension",
+    "src/**/*.spec.*"
+  ]
+}
