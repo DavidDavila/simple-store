@@ -1,5 +1,5 @@
 {
-  "name": "@ambar/store",
+  "name": "simple-store",
   "version": "0.0.10",
   "description": "",
   "main": "dist/index.js",
