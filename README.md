@@ -1,21 +1,21 @@
-# SimpleStore
+# StoreLite
 
-SimpleStore es una clase de Store simple que se puede usar para almacenar datos. La clase SimpleStore se basa en la clase RxJS BehaviorSubject, lo que significa que los datos en la Store son observables. Esto le permite suscribirse a cambios en los datos de la Store. Además, esta hecho en base al Objeto Proxy de JavaScript, con lo que se consigue que las definiciones de las propiedades son totalmente dinámicas.
+StoreLite es una clase de Store simple que se puede usar para almacenar datos. La clase StoreLite se basa en la clase RxJS BehaviorSubject, lo que significa que los datos en la Store son observables. Esto le permite suscribirse a cambios en los datos de la Store. Además, esta hecho en base al Objeto Proxy de JavaScript, con lo que se consigue que las definiciones de las propiedades son totalmente dinámicas.
 
 ## Instalación
 
-Para instalar SimpleStore, puede usar el siguiente comando:
+Para instalar StoreLite, puede usar el siguiente comando:
 
 ```shell
-npm install simple-store
+npm install store-lite
 ```
 
 ## Uso
 
-Para usar SimpleStore, primero debe crear una nueva instancia de la clase SimpleStore. Puede hacer esto usando el siguiente código:
+Para usar StoreLite, primero debe crear una nueva instancia de la clase StoreLite. Puede hacer esto usando el siguiente código:
 
 ```typescript
-const SimpleStore = new SimpleStore();
+const StoreLite = new StoreLite();
 ```
 
 ### Metodos
@@ -24,7 +24,7 @@ const SimpleStore = new SimpleStore();
 - getStore(name: string) >>> Recupera una Store, por el indentificador (el nombre)
 - toJson(data: Store) >>> Hace la conversion de una Store a Json
 
-Una vez que haya creado una nueva instancia de la clase SimpleStore, se puede manipular los datos en la Store.
+Una vez que haya creado una nueva instancia de la clase StoreLite, se puede manipular los datos en la Store.
 
 ### Importante
 
@@ -42,7 +42,7 @@ type Driver = {
  team: { name: string; teamPrincipal: string };
 };
 
-SimpleStore.setStore<Driver>('Alo14', {
+StoreLite.setStore<Driver>('Alo14', {
  name: 'Fernando Alonso Diaz',
  age: 42,
  number: 14,
@@ -51,14 +51,14 @@ SimpleStore.setStore<Driver>('Alo14', {
   teamPrincipal: 'Mike Crack',
  },
 });
-const data = SimpleStore.getStore<Driver>('myStore');
+const data = StoreLite.getStore<Driver>('myStore');
 console.log(data.name); // IDE reconoce que propiedades implementa y el tipo de ellas
 ```
 
 #### Sin tipado
 
 ```typescript
-SimpleStore.setStore<any>('Alo14', {
+StoreLite.setStore<any>('Alo14', {
  name: 'Fernando Alonso Diaz',
  age: 42,
  number: 14,
@@ -67,7 +67,7 @@ SimpleStore.setStore<any>('Alo14', {
   teamPrincipal: 'Mike Crack',
  },
 });
-const data = SimpleStore.getStore<any>('myStore');
+const data = StoreLite.getStore<any>('myStore');
 console.log(data.name); // IDE NO reconoce que propiedades implementa, lo trata como any
 ```
 
@@ -86,7 +86,7 @@ type Driver = {
 
 type DriverWithTeamExtended = Driver & { team: { country: string } };
 
-SimpleStore.setStore<DriverWithTeamExtended>('Alo14', {
+StoreLite.setStore<DriverWithTeamExtended>('Alo14', {
  name: 'Fernando Alonso Diaz',
  age: 42,
  number: 14,
@@ -96,7 +96,7 @@ SimpleStore.setStore<DriverWithTeamExtended>('Alo14', {
   country: 'England',
  },
 });
-const data = SimpleStore.getStore<DriverWithTeamExtended>('myStore');
+const data = StoreLite.getStore<DriverWithTeamExtended>('myStore');
 console.log(data.team.country);
 ```
 
@@ -110,7 +110,7 @@ type Driver = {
  team: { name: string; teamPrincipal: string };
 };
 
-SimpleStore.setStore<Driver & { team: { country: string } }>('Alo14', {
+StoreLite.setStore<Driver & { team: { country: string } }>('Alo14', {
  name: 'Fernando Alonso Diaz',
  age: 42,
  number: 14,
@@ -120,13 +120,13 @@ SimpleStore.setStore<Driver & { team: { country: string } }>('Alo14', {
   country: 'England',
  },
 });
-const data = SimpleStore.getStore<Driver & { team: { country: string } }>('myStore');
+const data = StoreLite.getStore<Driver & { team: { country: string } }>('myStore');
 console.log(data.team.country);
 ```
 
 ## Observables
 
-SimpleStore, cuando devuelve los datos de una Store, devuelve o bien Store que contienen sub-stores, o cuando ya es un dato real almacenado, lo que devuelve es una instancia de rxjs, BehavieurSubject, por lo que los datos representan observables donde nos podemos subscribirnos en diferentes lugares de la app.
+StoreLite, cuando devuelve los datos de una Store, devuelve o bien Store que contienen sub-stores, o cuando ya es un dato real almacenado, lo que devuelve es una instancia de rxjs, BehavieurSubject, por lo que los datos representan observables donde nos podemos subscribirnos en diferentes lugares de la app.
 
 ```typescript
 type Driver = {
@@ -136,7 +136,7 @@ type Driver = {
   team: { name: string; teamPrincipal: string };
 };
 
-SimpleStore.setStore<Driver>("Alo14", {
+StoreLite.setStore<Driver>("Alo14", {
   name: "Fernando Alonso Diaz",
   age: 42,
   number: 14,
@@ -145,7 +145,7 @@ SimpleStore.setStore<Driver>("Alo14", {
     teamPrincipal: "Mike Crack",
   },
 });
-const data = SimpleStore.getStore<Driver>("Alo14");
+const data = StoreLite.getStore<Driver>("Alo14");
 console.log(data.name.subscribe( (value) => {...} ));
 console.log(data.team.name( (value) => {...} ));
 ```
@@ -164,7 +164,7 @@ type Driver = {
   team: { name: string; teamPrincipal: string };
 };
 
-SimpleStore.setStore<Driver>("Alo14", {
+StoreLite.setStore<Driver>("Alo14", {
   name: "Fernando Alonso Diaz",
   age: 41,
   number: 14,
@@ -174,7 +174,7 @@ SimpleStore.setStore<Driver>("Alo14", {
   },
 });
 
-const data = SimpleStore.getStore<Driver>("Alo14");
+const data = StoreLite.getStore<Driver>("Alo14");
 
 // Actualizacion
 
@@ -199,7 +199,7 @@ type Driver = {
   team: { name: string; teamPrincipal: string };
 };
 
-SimpleStore.setStore<Driver>("Alo14", {
+StoreLite.setStore<Driver>("Alo14", {
   name: "Fernando Alonso Diaz",
   age: 41,
   number: 14,
@@ -209,5 +209,5 @@ SimpleStore.setStore<Driver>("Alo14", {
   },
 });
 
-SimpleStore.deleteStore("Alo14");
+StoreLite.deleteStore("Alo14");
 ```

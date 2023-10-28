@@ -1,7 +1,7 @@
 
 
-import SimpleStore from "../src/index";
-const simpleStore = new SimpleStore();
+import StoreLite from "../src/index";
+const simpleStore = new StoreLite();
 
 type UserDataT = { name: string; address: { city: string; cp: number } };
 
